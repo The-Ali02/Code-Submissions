@@ -1,0 +1,37 @@
+import java.util.*;
+class Item
+{   int boxes,units;
+    Item(int boxes, int units){
+        this.boxes=boxes;
+        this.units=units;
+    }
+}
+class Solution {
+    public int maximumUnits(int[][] boxTypes, int truckSize) {
+		//int boxTypes[][] = {{5,10},{2,5},{4,7},{3,9}};
+		//int truckSize = 10;
+		List<Item> list = new ArrayList<Item> ();
+		
+		for(int i=0;i<boxTypes.length;i++) 
+		    list.add(i,new Item(boxTypes[i][0],boxTypes[i][1]));
+        Collections.sort(list,(i1,i2) -> i2.units-i1.units);
+          
+        int totalUnits=0;
+        
+        for (int i=0;i<list.size() && truckSize>0 ;i++)
+        {
+            int temp =(int) list.get(i).boxes;
+            if(truckSize - temp >= 0)
+            {
+                totalUnits +=  temp*list.get(i).units;
+                truckSize -= temp;
+            }
+            else if(truckSize>0 && truckSize < temp)
+            {
+                totalUnits += truckSize*list.get(i).units;
+                truckSize = 0;
+            }
+        }
+        return totalUnits;
+	}
+}
