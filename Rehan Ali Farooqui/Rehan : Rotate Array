@@ -1,0 +1,26 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        if(k%n==0)
+            return;
+        k = k % n;
+        //int temp[] = new int[k];
+        
+        int temp = nums[n-k];    //stores the starting element of the rotated array
+        int arr[] = new int[n];
+        arr[0] = temp;
+        int cnt=1;
+        for(int i=1;i<n;i++)
+        {
+            if( (n-k+i) < n ){
+                arr[cnt++] = nums[n-k+i];
+            }
+        }
+        for(int i = 0;i<n-k;i++)
+        {
+            arr[cnt++] = nums[i];
+        }
+        System.arraycopy(arr,0,nums,0,n);
+    }
+}
+//The above is my brute approach
