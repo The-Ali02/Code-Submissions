@@ -1,0 +1,16 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if(strs[0].length()==0)
+            return "";
+        String prefix = strs[0];
+        for(int i=1;i<strs.length;i++)
+        {   //index of method can also take strings
+            while(strs[i].indexOf(prefix)!=0)
+                prefix = prefix.substring(0,prefix.length()-1);  
+            //reducing the prefix length by 1 and then checking
+        }
+        //prefix = "flower" "flowe" "flow" 
+        //strs =["flow","flight"]
+        return prefix;
+    }
+}
