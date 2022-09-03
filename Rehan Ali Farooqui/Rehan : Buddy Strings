@@ -1,0 +1,52 @@
+class Solution {
+    public boolean buddyStrings(String s, String goal) {
+        
+        /*for(int i=0;i<s.length();i++)
+        {
+            for(int j=i+1;j<s.length();j++)
+            {
+                /*String temp = new String(s);
+                char ch = temp.charAt(i);
+                temp.charAt(i) = temp.charAt(j);
+                temp.charAt(j) = ch;
+                *//*
+                char ch[] = s.toCharArray();
+                char temp = ch[i];
+                ch[i] = ch[j];
+                ch[j] = temp;
+                String t = new String(ch);
+                if(t.equals(goal))
+                    return true;   
+            }
+        }*/
+        if(s.length()!=goal.length())   return false;
+        if (s.equals(goal))
+        {    //for 'aa'
+            int[] count = new int[26];
+            for (int i = 0; i < s.length(); ++i)
+                count[s.charAt(i) - 'a']++;
+
+            for (int c: count)
+                if (c > 1) return true;
+            return false;
+        }
+        int cnt=0;
+        int index1=-1,index2=-1;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)!=goal.charAt(i) && index1==-1){
+                index1=i;  
+                cnt++;
+            }
+            else if(s.charAt(i)!=goal.charAt(i) )
+            {
+                index2 = i;
+                cnt++;
+            }
+        }
+        if(cnt==2 && s.charAt(index1)==goal.charAt(index2) && s.charAt(index2)==goal.charAt(index1))
+            return true;
+        else
+            return false;
+    }
+}
