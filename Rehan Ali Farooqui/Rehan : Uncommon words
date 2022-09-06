@@ -1,0 +1,33 @@
+import java.util.*;
+class Solution {
+    public String[] uncommonFromSentences(String s1, String s2) {
+        String[] sent1 = s1.split(" ");
+        String[] sent2 = s2.split(" ");        
+        HashMap<String,Integer> map = new HashMap<>();
+        for(int i=0;i<sent1.length;i++)
+        {
+            if(map.containsKey(sent1[i]))
+                map.put(sent1[i],(Integer)map.get(sent1[i])+1);
+            else 
+                map.put(sent1[i],1);
+        }
+        for(int j=0; j<sent2.length; j++)
+        {
+            if(map.containsKey(sent2[j]))
+                map.put(sent2[j],(Integer)map.get(sent2[j])+1);
+            else
+                map.put(sent2[j],1);
+        }
+        ArrayList<String> res =  new ArrayList<>();
+        for(Map.Entry mp : map.entrySet())
+            if((Integer)mp.getValue() == 1)
+                res.add((String)mp.getKey());
+        
+        String[] str = new String[res.size()];
+ 
+        for (int i = 0; i < res.size(); i++) 
+            str[i] = res.get(i);
+                
+        return str;
+    }
+}
