@@ -1,0 +1,21 @@
+import java.util.*;
+class Solution {
+    public int[][] intervalIntersection(int[][] a, int[][] b) {
+        int i=0,j=0,start=0,end=0;
+        
+        List<int[]> res = new ArrayList<>(); 
+        while(i<a.length && j<b.length){
+            start = Math.max(a[i][0],b[j][0]);
+            end = Math.min(a[i][1],b[j][1]);
+            
+            if(start<=end)
+                res.add(new int[]{start,end});
+            
+            if(a[i][1]<b[j][1])
+                i++;
+            else
+                j++;
+        }
+        return res.toArray(new int[0][]);
+    }
+}
